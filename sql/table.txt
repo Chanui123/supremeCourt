@@ -1,0 +1,15 @@
+//Creating user table command 
+CREATE TABLE USERS ( ID int NOT NULL AUTO_INCREMENT , UserName varchar (50), Email varchar (50), PRIMARY KEY (ID) )
+
+//Creating user type command 
+CREATE TABLE usertype( ID int NOT NULL AUTO_INCREMENT, typeName varchar (50), PRIMARY KEY (ID) )
+
+//Creating article type command 
+CREATE TABLE articleType( ID int NOT NULL AUTO_INCREMENT, typeName varchar (50), PRIMARY KEY (ID) )
+
+//setting another article type 
+CREATE TABLE article_articleType ( articleID int NOT NULL, articletypeID int NOT NULL, FOREIGN KEY (articleID) REFERENCES article(ID), FOREIGN KEY (articletypeID) REFERENCES articletype(ID) )
+//article table 
+CREATE TABLE article ( ID int NOT NULL AUTO_INCREMENT, publisherID int, content LONGTEXT, title varchar (255), publishDate DATETIME, PRIMARY KEY (ID), FOREIGN KEY (publisherID) REFERENCES users(ID) )
+
+
