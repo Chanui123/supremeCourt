@@ -2,7 +2,6 @@
     
     function validateToken($authorizationHeader) {
         $token = null;
-        
         if(isset($authorizationHeader)){
             require('../config.php');
             $conn = mysqli_connect($sql_host, $sql_user, $sql_pass, $sql_db);
@@ -20,6 +19,7 @@
             }
         } 
     }
+
     function generateToken($userId){
         $token= bin2hex(random_bytes(64));
         require('../config.php');

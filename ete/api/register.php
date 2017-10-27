@@ -16,21 +16,22 @@ else {
         $response["message"] = "Request must be in valid json";
     }else{
         if (isset($content["email"]) && !empty($content["email"])&& isset($content["username"]) && !empty($content["username"]) 
-        && isset($content["password"]) && !empty($content["password"])) {
+        && isset($content["password"]) && !empty($content["password"]) && isset($content["usertype"]) && !empty($content["usertype"])) {
         
             
             $conn = mysqli_connect($sql_host, $sql_user, $sql_pass, $sql_db);
             $email = $content["email"];
             $username = $content["username"];
             $password = $content["password"];
+            $userType = $content["usertype"];
     
             if (!$conn) {
                 http_response_code(500);
                 $response["statusCode"] = 500;
                 $response["message"] = "Database connection failure";
             } else {
-                $stmt = $conn->prepare("insert into users" . "(email,username,password)" . " values (?,?,?)");
-                $stmt->bind_param("sss", $email, $username, $password);
+                $stmt = $conn->prepare("insert into users" . "(email,username,password,usertype)" . " values (?,?,?,?)");
+                $stmt->bind_param("ssss", $email, $username, $password, $userType);
     
                 $result = $stmt->execute();
                 if (!$result) {

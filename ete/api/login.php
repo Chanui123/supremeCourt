@@ -15,7 +15,8 @@ else {
         if (isset($content["username"]) && !empty($content["username"]) 
             && isset($content["password"]) && !empty($content["password"])) {
             
-            require_once('../config.php');
+            require('../config.php');
+            
             $conn = mysqli_connect($sql_host, $sql_user, $sql_pass, $sql_db);
             $username = $content["username"];
             $password = $content["password"];
